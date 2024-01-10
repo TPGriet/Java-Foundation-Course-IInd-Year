@@ -1,1 +1,1008 @@
+1. Given an integer array A of size N. You have to construct a new B array with a length of (N+N). 
+For each index i from 0 to N-1, the value of B[i] should be the same as the value of A[i], and the value of B[i+N] 
+should also be the same as the value of A[i].
+In simple terms, you have to duplicate the A array and place them consecutively in the B array two times.
+
+Input Format:
+----------------
+The first line of input contains the N - the size of the array A. The next line contains N integers of array A.
+
+
+Output Format:
+-----------------------
+Print the elements of the B array separated by space.
+
+Constraints:
+------------
+1 <= N <= 1000
+1 <= A[i] <= 1000
+
+
+
+Example test cases:
+--------------------
+case=t1
+input=5
+4 6 3 1 23
+output=
+4 6 3 1 23 4 6 3 1 23 
+
+
+case=t2
+input=3
+1 1 1
+output=1 1 1 1 1 1 
+
+case=t3
+fail message="hidden"
+input=7
+2 1 0 1 3 4 89
+output=
+2 1 0 1 3 4 89 2 1 0 1 3 4 89 
+
+
+case=t4
+Input=
+4
+1 6 6 1 
+Output=
+1 6 6 1 1 6 6 1
+
+PROGRAM:
+---------------------------------
+import java.util.*;
+
+public class concat {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int N = scanner.nextInt();
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++) {
+            A[i] = scanner.nextInt();
+        }
+
+        int[] B = new int[2 * N];
+
+        for (int i = 0; i < N; i++) {
+            B[i] = A[i];
+            B[i + N] = A[i];
+        }
+        for (int i = 0; i < 2 * N; i++) {
+            System.out.print(B[i] + " ");
+        }
+    }
+}
+
+2. Find all the distict elements in the array.(as per their insertion order in the array)
+
+Input Format:
+----------------
+The first line of input contains the N - the size of the array A. The next line contains N integers of array A.
+
+
+Output Format:
+-----------------------
+Print distinct elements(In their original order)
+
+Constraints:
+------------
+1 <= N <= 30
+1 <= A[i] <= 1000
+
+Example test cases:
+--------------------
+case=t1
+input=5
+4 6 3 1 23
+output=
+Distinct elements in the array:
+4 6 3 1 23
+
+
+case=t2
+input=5
+1 1 1 1 1
+output=
+Distinct elements in the array:
+1 
+
+case=t3
+fail message="hidden"
+input=1
+6
+output=
+Distinct elements in the array:
+6 
+
+case=t4
+Input=4
+1 6 6 1 
+Output=
+1 6 
+
+case=t5
+fail message="hidden"
+input=4
+6 1 6 1
+output=
+Distinct elements in the array:
+6 1
+
+case=t6
+input=7
+5 4 1 0 3 3 7
+output=Distinct elements in the array:
+5 4 1 0 3 7
+
+PROGRAM:
+----------------------------------------------------
+import java.util.*;
+
+public class distinct{
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            int n = scanner.nextInt();
+            int[] array = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                array[i] = scanner.nextInt();
+            }
+
+            System.out.println("Distinct elements in the array:");
+            printDistinctElements(array);
+        }
+
+        private static void printDistinctElements(int[] array) {
+            Set<Integer> set = new HashSet<>();
+
+            for (int num : array) {
+                if (set.add(num)) {
+                    System.out.print(num + " ");
+                }
+            }
+        }
+    }
+
+3. Print unique elements of the array in the same order as they appear in the input.
+Note:
+Do not use any inbuilt functions / libraries for your main logic.
+
+Input Format:
+The first line of input contains the size of the array - N and the second line contains the elements of the array.
+Output Format:
+Print unique elements from the given array.
+
+Constraints:
+------------------
+1 <= N <= 100
+0 <= ar[i] <= 10^9
+
+Example test cases:
+--------------------
+case=t1
+input=5
+2 1 1 3 5
+output=
+2 3 5 
+
+case=t2
+input=4
+2 1 1 7
+output=
+2 7
+
+case=t3
+input=5
+0 3 1 1 2
+output=
+0 3 2
+
+case=t4
+fail message="hidden"
+input=8
+4 4 4 0 1 7 1 7
+output=
+0
+
+case=t5
+input=5
+1 1 1 1 1
+output=No Unique Element
+
+case=t6
+fail message="hidden"
+input=6
+7 7 7 7 7 7
+output=No Unique Element
+
+PROGRAM:
+---------------------------
+import java.util.Scanner;
+
+public class Unique {
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            int N = scanner.nextInt();
+
+            int[] array = new int[N];
+            for (int i = 0; i < N; i++) {
+                array[i] = scanner.nextInt();
+            }
+            findAndPrintUniqueElements(array);
+        }
+
+        private static void findAndPrintUniqueElements(int[] array) {
+            int[] countArray = new int[1000000]; 
+
+            for (int num : array) {
+                countArray[num]++;
+            }
+
+            for (int num : array) {
+                if (countArray[num] == 1) {
+                    System.out.print(num + " ");
+                }
+                else
+                System.out.println("No Unique Element");
+            }
+        }
+    }
+
+4. Find a duplicate element in the given array of integers. There will be only a single duplicate element in the array.
+Note:
+Do not use any inbuilt functions / libraries for your main logic
+
+
+Input Format:
+-----------------
+The first line of input contains the size of the array - N
+and the second line contains the elements of the array, 
+
+Output Format:
+------------------------
+Print the duplicate element from the given array.
+
+
+Constraints:
+-----------------
+2 <= N <= 100
+0 <= arr[i] <= 10^9
+
+
+
+Example Test cases:
+------------------------
+case=t1
+Input=
+6
+5 4 10 9 21 10
+Output=
+10
+
+case=t2
+input=4
+3 1 2 4
+output=
+No duplicate element found.
+
+case=t3
+input=5
+45643 2 78 123 45643
+output=
+Duplicate Element: 45643
+
+case=t4
+input=6
+1 3 634556 12 6 634556
+output=
+Duplicate Element: 634556
+
+case=t5
+fail message="hidden"
+input=5
+1 2 3 4 5
+output=
+No duplicate element found.
+
+case=t6
+fail message="hidden"
+input=7
+5 5 5 5 5 5 5
+output=
+Duplicate element: 5
+
+case=t7
+input=4
+7 7 7 7
+output=
+Duplicate element: 7
+
+PROGRAM:
+--------------------------
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class duplicate {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n;
+        n = scanner.nextInt();
+
+        int[] a = new int[n];
+        Set<Integer> set = new HashSet<>();
+        boolean flag= false;
+
+        for (int i = 0; i < n; i++) {
+            a[i] = scanner.nextInt();
+        }
+        
+        for (int num : a) {
+            if (!set.add(num)) {
+                  if(!flag) {
+                System.out.println("Duplicate Element: "+num);
+                flag = true;
+            }
+          }
+        }
+
+        if (!flag) {
+            System.out.println("No duplicate element found.");
+        }
+    }
+}
+
+5. Find list of all duplicates in a given array.(may contain negative numbers)
+
+Input format: enter size of the array
+            enter the elements one by one.
+            
+output format: display list of all duplicates as an arraylist.
+
+Test case examples:
+------------------------
+case=t1
+input=7
+-1 23 -1 45 -45 23 80
+output=
+List of Duplicates: [-1, 23]
+
+case=t2
+input=5
+1 3 1 3 2
+output=
+List of Duplicates: [1, 3]
+
+case=t3
+input=7
+-1 -2 -1 -2 2 2 5
+output=
+List of Duplicates: [-1, -2, 2]
+
+case=t4
+input=5
+1 1 1 1 1
+output=List of Duplicates: [1]
+
+case=t5
+fail message="hidden"
+input=4
+2 2 2 2
+output=List of Duplicates: [2]
+
+PROGRAM:
+--------------------------------
+import java.util.*;
+public class duplicates {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int N = scanner.nextInt();
+
+        int[] array = new int[N];
+        for (int i = 0; i < N; i++) {
+            array[i] = scanner.nextInt();
+        }
+        List<Integer> dup = new ArrayList<>();
+        Set<Integer> unique = new HashSet<>();
+
+        for (int i = 0; i < array.length; i++) {
+            int element = array[i];
+            if (!unique.add(element) && !dup.contains(element)) {
+                dup.add(element);
+            }
+        }
+        System.out.println("List of Duplicates: " + dup);
+    }
+}
+
+
+6. Given an array A of size N. Construct an array B, such that B[i] is calculated as follows:
+--------------------
+1. Find leftSum => sum of elements to the left of index i in array A; if none, use 0.
+2. Find rightSum => sum of elements to the right of index i in array A; if none, use 0.
+3. B[i] = | leftSum - rightSum | (if difference is negative convert it into positive value and print)
+
+Your task is to simply print the B array.
+
+Input Format:
+--------------------
+The first line of input contains the N - size of the array. The next line contains N integers - the elements of array A.
+
+
+Output Format:
+-----------------------
+Print the elements of the B array separated by space.
+
+Constraints:
+-------------
+1 <= N <= 100
+0 <= arr[i] <= 100000
+
+
+Example Test Case:
+-----------------------
+case=t1
+Input=
+3
+1 6 6
+Output=
+12 5 7
+
+case=t2
+input=3
+6 7 7
+output=
+14 1 13
+
+case=t3
+input=7
+-1 4 7 45 321 42 100
+output=
+519 516 505 453 87 276 418 
+
+case=t4
+input=5
+1 1 1 1 1
+output=
+4 2 0 2 4 
+
+case=t5
+fail message="hidden"
+input=5
+0 0 0 0 0
+output=
+0 0 0 0 0 
+
+case=t6
+input=5
+1243 6554 244 7756 24543
+output=
+39097 31300 24502 16502 15797 
+
+Explanation:
+--------------------
+At index 0:
+LeftSum = 0, RightSum = 12
+
+B[0] = | LeftSum - RightSum | = 12.
+
+At index 1:
+LeftSum = 1, RightSum = 6
+
+B[1] = | LeftSum - RightSum | = 5.
+
+At index 2:
+LeftSum = 7, RightSum = 0
+
+B[2] = | LeftSum - RightSum | = 7.
+
+
+
+Example 2:
+--------------
+input=5
+1 1 1 1 1
+output=
+4 2 0 2 4 
+
+PROGRAM:
+---------------------------
+import java.util.Scanner;
+
+public class LeftRightSum{
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            int n = scanner.nextInt();
+            int[] array = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                array[i] = scanner.nextInt();
+            }
+
+            int[] resultArray = calculateDifferenceArray(array, n);
+
+            for (int i = 0; i < n; i++) {
+                System.out.print(resultArray[i] + " ");
+            }
+        }
+
+        private static int[] calculateDifferenceArray(int[] array, int n) {
+            int[] resultArray = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                int leftSum = calculateLeftSum(array, i);
+                int rightSum = calculateRightSum(array, i, n);
+                resultArray[i] = Math.abs(leftSum - rightSum);
+            }
+
+            return resultArray;
+        }
+
+        private static int calculateLeftSum(int[] array, int index) {
+            int leftSum = 0;
+            for (int i = 0; i < index; i++) {
+                leftSum += array[i];
+            }
+            return leftSum;
+        }
+
+        private static int calculateRightSum(int[] array, int index, int n) {
+            int rightSum = 0;
+            for (int i = index + 1; i < n; i++) {
+                rightSum += array[i];
+            }
+            return rightSum;
+        }
+    }
+
+7. Write a java Program to display elements of 2D Matrix in Spiral Order i.e
+
+Print the top most row values first, then print rightmost column values,
+          then print bottom row values and finally print leftmost colum values.
+
+Input format: Enter number of rows and column and enter matrix elements one by one.
+
+output format: A single array printing the elements in spiral order.
+
+Test case example:
+----------------------
+case=t1
+input=5
+4
+1 2 3 4
+5 6 7 8
+1 2 3 4
+5 6 7 8
+9 1 2 3
+output=
+Spiral Order: [1, 2, 3, 4, 8, 4, 8, 3, 2, 1, 9, 5, 1, 5]
+
+case=t2
+input=3
+3
+1 2 3
+4 5 6
+7 8 9
+output=
+Spiral Order: [1, 2, 3, 6, 9, 8, 7, 4]
+
+
+case=t3
+input=6
+3
+1 2 3
+4 5 6
+7 8 9
+1 2 3
+4 5 6
+7 8 9
+output=
+Spiral Order: [1, 2, 3, 6, 9, 3, 6, 9, 8, 7, 4, 1, 7, 4]
+
+case=t4
+input=2
+4
+1 2 3 4
+5 6 7 8
+output=
+Spiral Order: [1, 2, 3, 4, 8, 7, 6, 5]
+
+
+case=t5
+fail message="hidden"
+input=3
+4
+1 2 3 4
+4 5 6 7
+8 9 4 5
+output=
+Spiral Order: [1, 2, 3, 4, 7, 5, 4, 9, 8, 4]
+
+PROGRAM:
+-------------------------
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class Spiral {
+        public static List<Integer> spiralOrder(int[][] matrix) {
+            List<Integer> result = new ArrayList<>();
+
+            if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+                return result;
+            }
+
+            int rows = matrix.length;
+            int cols = matrix[0].length;
+
+            int top = 0, bottom = rows - 1, left = 0, right = cols - 1;
+
+
+            // Traverse top row
+            for (int i = 0; i <= cols-1; i++) {
+                result.add(matrix[0][i]);
+            }
+
+            // Traverse right column
+            for (int i = 1; i <= rows-1; i++) {
+                result.add(matrix[i][right]);
+            }
+
+            for (int i = cols-2; i >= 0; i--) {
+                result.add(matrix[bottom][i]);
+            }
+
+
+            for (int i = rows-2; i >= 1; i--) {
+                result.add(matrix[i][0]);
+            }
+
+
+            return result;
+        }
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+          //  System.out.println("Enter the number of rows: ");
+            int m = scanner.nextInt();
+          //  System.out.println("Enter the number of columns: ");
+            int n = scanner.nextInt();
+            int[][] matrix = new int[m][n];
+
+           // System.out.println("Enter the matrix elements:");
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    matrix[i][j] = scanner.nextInt();
+                }
+            }
+
+            List<Integer> result = spiralOrder(matrix);
+            System.out.println("Spiral Order: " + result);
+        }
+    }
+
+8. Write a java program to find the sum of diagonal elements in a square matrix.
+
+Note: if the matrix is an Odd size matrix for example 3x3 Matrix, then don't add center element twice.
+     For example if the matrix is: 
+     1 2 3
+     4 5 6
+     7 8 9    
+     SUm of diagonal elements is 25 (1+5+9+3+7)
+
+Input/Output Constraints:
+----------------------------
+Within Integer Range.
+
+
+Test Case Examples:
+-------------------
+case=t1
+input=3 
+1 2 3
+4 5 6
+7 8 9
+output=
+Sum of Diagonals: 25
+
+case=t2
+input=4
+1 2 3 4
+5 6 7 8
+2 2 2 2 
+7 7 7 7
+output=
+Sum of Diagonals: 36
+
+case=t3
+input=2
+1 2
+3 4
+output=
+Sum of Diagonals: 10
+
+case=t4
+input=1
+10
+output=
+Sum of Diagonals: 10
+
+case=t5
+fail message="hidden case"
+input=3
+4 5 6
+1 2 3
+7 8 9
+output=
+Sum of Diagonals: 28
+
+case=t6
+input=5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+output=
+Sum of Diagonals: 27
+
+PROGRAM:
+------------------------------
+import java.util.*;
+public class DiagonalSum {
+
+    public static int diagonalSum(int[][] mat) {
+        int sum = 0;
+        int n = mat.length;
+
+        for (int i = 0; i < n; i++) {
+            sum += mat[i][i];
+            sum += mat[i][n - 1 - i];
+        }
+        if (n % 2 == 1) {
+            int center = n / 2;
+            sum -= mat[center][center];
+        }
+
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       // System.out.println("Enter the size of the square matrix: ");
+        int n = scanner.nextInt();
+        int[][] matrix = new int[n][n];
+
+       // System.out.println("Enter the matrix elements:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
+        int result = diagonalSum(matrix);
+        System.out.println("Sum of Diagonals: " + result);
+    }
+}
+
+
+9. Write a java program to find Kth Smallest element in a 2D array.
+
+Input Format: enter the number of rows and columns on each line
+              Then enter the 2D array elements
+              At last, Enter the K, which indicates the kth Smallest element to be searched.
+              
+
+Input/Output Constraints:
+----------------------------
+Within Integer Range.
+
+
+Test Case Examples:
+-------------------
+case=t1
+input=
+4
+3
+ 7   4   8
+ 3   5   89
+12  56   10
+14  45   100
+4
+output=
+The 4th smallest element is: 7
+
+case=t2
+input=
+2
+3
+7 6 8
+6 8 10
+3
+output=
+The 3th smallest element is: 7
+
+case=t3
+input=
+3
+4 
+1 2 3 4
+5 6 7 8 
+9 1 2 3
+6
+output=
+The 6th smallest element is: 3
+
+case=t4
+input=
+4
+3
+2423434 545 675445
+3455423 455 12344
+6786532 123 67865
+9009846 859 89884
+7
+output=
+The 7th smallest element is: 89884
+
+case=t5
+fail message="hidden case"
+input=4
+2
+1 2
+3 4
+5 6
+7 8
+4
+output=
+The 4th smallest element is: 4
+
+PROGRAM:
+-----------------------------
+import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+public class KthSmallest {
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            // Read input from the user
+          //  System.out.print("Enter the number of rows: ");
+            int rows = scanner.nextInt();
+
+            //System.out.print("Enter the number of columns: ");
+            int cols = scanner.nextInt();
+
+            int[][] matrix = new int[rows][cols];
+
+           // System.out.println("Enter the elements of the 2D array:");
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    matrix[i][j] = scanner.nextInt();
+                }
+            }
+
+            //System.out.print("Enter the value of k: ");
+            int k = scanner.nextInt();
+
+            int kthSmallest = findKthSmallest(matrix, k);
+            System.out.println("The " + k + "th smallest element is: " + kthSmallest);
+        }
+
+        private static int findKthSmallest(int[][] matrix, int k) {
+            int rows = matrix.length;
+            int cols = matrix[0].length;
+
+            int[] flatArray = new int[rows * cols];
+            int index = 0;
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    flatArray[index++] = matrix[i][j];
+                }
+            }
+
+            Arrays.sort(flatArray);
+
+            return flatArray[k - 1];
+        }
+    }
+
+
+10. Write a java program to find lucky number in the 2D matrix:
+Lucky number in the matrix is the one who is largest in its columns and smallest in its rows.
+
+
+Input format: enter the numbers of rows and columns
+            then enter the elements of the matrix.
+            
+output format: List of lucky numbers.
+
+Test case example:
+------------------------
+case=t1
+input=3
+3
+1   2  3
+4   5  6
+15 16 17
+output=
+Lucky Number: 15
+
+case=t2
+input=3
+3 
+1 2 3
+4 5 6
+7 8 9
+output=
+Lucky Number: 7
+
+case=t3
+fail message="hidden"
+input=3 
+3
+3 2 1
+6 5 4
+9 8 7
+output=
+Lucky Number: 7
+
+case=t4
+input=
+4
+2
+10 20
+14 56
+78 65
+12 34
+output=Lucky Number: 65
+
+PROGRAM:
+-----------------------------
+import java.util.*;
+public class LuckyNumber
+{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int m=sc.nextInt();
+        int n=sc.nextInt();
+        int arr[][]=new int[m][n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=sc.nextInt();
+            }
+        }
+        HashSet<Integer> ele=new HashSet<Integer>();
+        for(int i=0;i<m;i++){
+            int min=Integer.MAX_VALUE;
+            for(int j=0;j<n;j++){
+                min=Math.min(min,arr[i][j]);
+                
+            }
+            ele.add(min);
+        }
+        int k=1,flag=0;
+        for(int j=0;j<n;j++){
+            int max=Integer.MIN_VALUE;
+            for(int i=0;i<m;i++){
+                max=Math.max(max,arr[i][j]);
+                
+            }
+            if(ele.contains(max)){
+                k=max;
+                flag=1;
+            }
+        }if(flag==1)
+        System.out.println("Lucky Number: "+k);
+    }
+}
+
 
