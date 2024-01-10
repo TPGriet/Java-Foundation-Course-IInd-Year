@@ -1,1 +1,879 @@
+1. Today, your mother wants to make sweets for you because of your exam results.
 
+She will make 0 Sweets if you scored 60 or less.
+She will make 1 Sweet if you scored between 61 and 80 inclusive.
+If you scored 81 or higher, she will make 2 Sweets.
+However, if it is your birthday, then your mother will consider your score to be 5 higher than it currently is. 
+(Eg, 60 become 65, if it’s your birthday)
+
+Write a method Met that takes in 2 parameters:
+
+1. first an integer that has your score:
+2. the second is a boolean value that is true if it is your birthday and false if it is not your birthday
+You have to print the number of sweets you will receive (0, 1 or 2) based on the given parameters.
+
+Example: Met(65,false) prints 1 because you scored between 61 and 80, and it is not your birthday.
+
+The Met method has to be inside a Main class.
+Input format: don't read any input, just implement the "met" method. and print the values.
+Output format: Sweets Made by Mom: 1
+
+Test case example:
+-------------------
+case=t1
+Input= 65 false
+Output= Sweets Made by Mom: 1
+
+case=t2
+Input= 57 true
+Output= Sweets Made by Mom: 1
+
+case=t3
+Input= 78 true
+Output= Sweets Made by Mom: 2
+
+case=t4
+input= 58 true
+output= Sweets Made by Mom: 1
+
+case=t5
+input= 58 false
+output= Sweets Made by Mom: 0
+
+case=t6
+fail message="hidden case"
+input= 90 true
+output= Sweets Made by Mom: 2
+
+PROGRAM:
+----------------------------
+import java.util.Scanner;
+
+class Main {
+    public static void Met(int score, boolean is_birthday) {
+        int adjustedScore = is_birthday ? score + 5 : score;
+
+        if (adjustedScore <= 60) {
+            System.out.println("Sweets Made by Mom: 0");
+        } else if (adjustedScore <= 80) {
+            System.out.println("Sweets Made by Mom: 1");
+        } else {
+            System.out.println("Sweets Made by Mom: 2");
+        }
+    }
+}
+
+2. M.S Dhoni just loves his jersey number 7 and considers it lucky. 
+  He loves it so much that he has a formula to understand if a pair of numbers are lucky are not.
+
+He uses following combination of numbers to check if pair is lucky or not
+---------------------------------------------------------------------------
+If any or both of the numbers are 7, then the pair is lucky.
+If the sum of the numbers is 7, then the pair is lucky.
+If the absolute difference of the two numbers is 7, then the pair is lucky.
+
+Write a function "Met" that takes as parameters 2 integers and prints Lucky Pair, if the pair is lucky.
+Otherwise it prints Not Lucky!
+
+The Met method has to be inside a Main class. 
+
+Note: Don't write any input reading code, just implement the "Met" Method.
+
+Hint: for absoulte difference use Math.abs library.
+
+Example Test cases:
+---------------------
+case=t1
+Input= 1 6
+Output= Lucky Pairs.
+
+case=t2
+Input= -9 -16
+Output= Lucky Pairs.
+
+case=t3
+Input= 7 95
+Output= Lucky Pairs.
+
+case=t4
+Input= 28 57
+Output= Not Lucky.
+
+case=t5
+input= 0 0
+output= Not Lucky.
+
+case=t6
+input= -20 -27
+output= Lucky Pairs.
+
+case=t7
+fail message="hidden"
+input= -27 -20
+output= Lucky Pairs.
+
+case=t8
+fail message="hidden"
+Input= 30 35
+Output= Not Lucky.
+
+PROGRAM:
+---------------------------
+import java.util.Scanner;
+
+class Main {
+  
+    public static void Met(int num1, int num2) {
+        if (num1 == 7 || num2 == 7 || num1 + num2 == 7 || Math.abs(num1 - num2) == 7) {
+            System.out.println("Lucky Pairs");
+        } else {
+            System.out.println("Not Lucky");
+        }
+    }
+}
+
+
+3. We are going to play a game called 6’s treat. In this, we take 2 numbers and print the larger number.
+However, if the 2 values have the same remainder when divided by 6, then we print the smaller value.
+However, in all cases, if the two values are the same, we print 0.
+
+Write a java program to implement the above game.
+
+Input Format: Read two integer values from user on same line.
+
+
+Test Case examples:
+----------------------
+case=t1
+Input= 44 44
+Output= 0
+
+case=t2
+Input= 1 7
+Output= 1
+
+case=t3
+Input= 7 95
+Output= 95
+
+case=t4
+Input= 28 57
+Output= 57
+
+case=t5
+input=20 14
+output= 14
+
+case=t6
+fail message="hidden"
+input=9 16
+output=16
+
+case=t7
+fail message="hidden"
+input=36 30
+output=30
+
+
+PROGRAM:
+------------------------------
+import java.util.Scanner;
+
+class Main {
+    public static void Met(int num1, int num2) {
+        if (num1 == num2)
+            System.out.println("0");
+        else if (num1 % 6 == num2 % 6)
+            System.out.println(Math.min(num1, num2));
+        else
+            System.out.println(Math.max(num1, num2));
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int input1 = scanner.nextInt();
+        int input2 = scanner.nextInt();
+        Met(input1, input2);
+    }
+}
+
+
+4. Write a Java program to generate following Hour glass number pattern.
+
+Test Case Example:
+-------------------
+case=t1
+input=6
+output=
+1 2 3 4 5 6 
+ 2 3 4 5 6 
+  3 4 5 6 
+   4 5 6 
+    5 6 
+     6 
+    5 6 
+   4 5 6 
+  3 4 5 6 
+ 2 3 4 5 6 
+1 2 3 4 5 6 
+
+case=t2
+fail message="hidden case"
+input=10
+output=
+1 2 3 4 5 6 7 8 9 10 
+ 2 3 4 5 6 7 8 9 10 
+  3 4 5 6 7 8 9 10 
+   4 5 6 7 8 9 10 
+    5 6 7 8 9 10 
+     6 7 8 9 10 
+      7 8 9 10 
+       8 9 10 
+        9 10 
+         10 
+        9 10 
+       8 9 10 
+      7 8 9 10 
+     6 7 8 9 10 
+    5 6 7 8 9 10 
+   4 5 6 7 8 9 10 
+  3 4 5 6 7 8 9 10 
+ 2 3 4 5 6 7 8 9 10 
+1 2 3 4 5 6 7 8 9 10 
+
+case=t3
+input=1
+output=
+1
+
+case=t4
+input= 2
+output=
+1 2 
+ 2 
+1 2 
+
+case=t5
+fail message="hidden case"
+input=7
+output=
+1 2 3 4 5 6 7 
+ 2 3 4 5 6 7 
+  3 4 5 6 7 
+   4 5 6 7 
+    5 6 7 
+     6 7 
+      7 
+     6 7 
+    5 6 7 
+   4 5 6 7 
+  3 4 5 6 7 
+ 2 3 4 5 6 7 
+1 2 3 4 5 6 7 
+
+
+PROGRAM:
+---------------------------------
+
+5. Toggle Case:
+Given a string, toggle the case of each character in the given string.
+
+Input Format:
+The first and only input line contains a string S, consisting of lowercase and uppercase characters.
+
+Output Format:
+Print the toggled string.
+
+Constraints:
+--------------------
+1 <= len(S) <= 100
+
+
+Test Case Examples:
+-----------------------
+case=t1
+input=GrieT
+output=gRIEt
+
+case=t2
+input=ColLEGe
+output=cOLlegE
+
+case=t3
+input=1234
+output=1234
+
+case=t4
+input=Arsenal@1234
+output=aRSENAL@1234
+
+case=t5
+fail message="hidden"
+input=All the best
+output=aLL THE BEST
+
+
+PROGRAM:
+-------------------------
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String res = "";
+        for(int i=0;i<str.length();i++){
+            char ch = str.charAt(i);
+            if(Character.isLowerCase(ch)) res+=(""+ch).toUpperCase();
+            //res+=String.valueOf(i).toUpperCase();
+            else if(!Character.isLowerCase(ch)) res+=(""+ch).toLowerCase();
+        }
+
+        System.out.println(res);
+
+    }
+}
+
+
+6. /* Its common practice to find biggest of two numbers using if else or ternary operator.
+   Let's find a biggest of two numbers using the switch statement. 
+   
+   Hint: Use switch statement in combination with compare method to find the boolean value.
+        based on the returned value, check which number is greater or if both numbers are equal.
+
+Input Format: Enter two integer numbers both on same line.
+              If user enters more than 2 numbers print error message as "Only 2 Numbers are allowed"
+              If user enters any other characters apart from integers, print error message as:
+                    "Invalid Input. Only Integers are allowed"
+                    
+Hint: Use the required methods: split, length, parseInt, compare, Use exception handling if needed.
+
+Note: Be cautious with extra whitespaces. if its there in input, try to remove them.
+
+Test Case Examples:
+-----------------------
+case=t1
+input=      12 78
+output= Maximum Number is: 78
+
+case=t2
+input=    105 7
+output= Maximum Number is: 105
+
+case=t3
+input= 45 12 78
+output= Only 2 Numbers are allowed
+
+case=t4
+input= Arsenal 1234
+output= Invalid Input. Only Integers are allowed
+
+case=t5
+input= griet gunner
+output= Invalid Input. Only Integers are allowed
+
+case=t6
+input= 12 12
+output= Both numbers are equal
+
+case=t7
+fail message="hidden"
+input= 23 78 45
+output= Only 2 Numbers are allowed
+
+case=t8
+fail message="hidden"
+input= griet 1234
+output= Invalid Input. Only Integers are allowed
+
+case=t9
+fail message="hidden"
+input= griet ack
+output= Invalid Input. Only Integers are allowed
+
+case=t10
+input= 45 67
+output= Maximum Number is: 67
+
+PROGRAM:
+----------------------------------
+import java.util.Scanner;
+public class Main {
+        public static void main(String[] args) {
+            Scanner input = new Scanner(System.in);
+
+           // System.out.printf("Enter two numbers separated by space: ");
+            String inputLine = input.nextLine().trim();
+            String[] numbers = inputLine.split(" ");
+
+            if (numbers.length != 2) {
+                System.out.println("Only 2 Numbers are allowed");
+                return;
+            }
+
+            try {
+                int n1 = Integer.parseInt(numbers[0]);
+                int n2 = Integer.parseInt(numbers[1]);
+                int res = Integer.compare(n1, n2);
+
+                switch (res) {
+                    case 0:
+                        System.out.printf("Both numbers are equal\n");
+                        break;
+                    case 1:
+                        System.out.printf("Maximum Number is: %d\n", n1);
+                        break;
+                    case -1:
+                        System.out.printf("Maximum Number is: %d\n", n2);
+                        break;
+                    default:
+                        System.out.printf("Invalid comparison result\n");
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Only Integers are allowed");
+            }
+        }
+    }
+
+
+7. U need to implement a java method "Met" to check if the given number is Armstrong number or not.
+   The Method Excepts the String Parameter as the Input.
+   
+   An Armstrong number:is a number that is the sum of its own digits each raised to the power of the number of digits. 
+                    
+Input/Output Constraint:
+--------------------------
+1<=N<10^17
+
+Test Case Examples:
+-----------------------
+case=t1
+input=67568
+output=67568 is not an Armstrong number.
+
+case=t2
+input=92727
+output=92727 is an Armstrong number.
+
+case=t3
+input=153               
+output=153 is an Armstrong number.
+
+case=t4
+input=9474
+output=9474 is an Armstrong number.
+
+case=t5
+input=24678050
+output=24678050 is an Armstrong number.
+
+case=t6
+fail message="hidden"
+input=28116440335967
+output=28116440335967 is an Armstrong number.
+
+case=t7
+input=35641594208964132
+output=35641594208964132 is an Armstrong number.
+
+case=t8
+input=5765676756
+output=5765676756 is not an Armstrong number.
+
+case=t9
+fail message="hidden"
+input=4338281769391370
+output=4338281769391370 is an Armstrong number.
+
+case=t10
+input=4929273885928088826
+output=4929273885928088826 is not an Armstrong number.
+
+PROGRAM:
+-----------------------------------
+import java.util.Scanner;
+import java.math.BigInteger;
+public class Main {
+    public static boolean isArmstrongNumber(String numStr) {
+        int length = numStr.length();
+        long sum = 0;
+
+        for (int i = 0; i < length; i++) {
+            int digit = Character.getNumericValue(numStr.charAt(i));
+            sum += Math.pow(digit, length);
+        }
+
+        return sum == Long.parseLong(numStr);
+    }
+}
+
+
+8. U need to find a factorial of given non negative integer number.
+
+input format:
+----------------
+enter a non negative integer.
+
+Output Format:
+------------------
+Print factorial of N.
+Note: Since the result can be very large, u need to apply result % 1000000007 for every iteration.
+      to overflowing the integer range. (Use long to store factorial result.)
+
+Print appropriate error messages as given in the test cases below if user enters
+any other value apart from non negative integer.
+
+Constraints: 
+---------------
+0 <= N <= 10^6
+
+Test Case examples:
+--------------------
+case=t1
+input=186
+output=71396619
+
+case=t2
+input=0
+output=1
+
+case=t3
+input=5
+output=120
+
+case=t4
+Input= 7
+output=
+5040
+
+case=t5
+input= 10
+Output=
+3628800
+
+case=t6
+input=12
+output=
+479001600
+
+case=t7
+input=14
+output=
+178290591
+
+case=t8
+input=165
+output=994387759
+
+case=t9
+fail message="hidden"
+input=135
+output=
+329067736
+
+case=10
+fail message="hidden"
+input=235
+output=685259446
+
+case=t11
+input=2147483
+output=346037862
+
+case=t12
+fail message="hidden"
+input=Ack
+output=Please enter a only numbers.
+
+case=t13
+fail message="hidden"
+input=-59648
+output=Please enter a non-negative integer.
+
+
+PROGRAM:
+-------------------------------------
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        if (sc.hasNextInt()) {
+            int n = sc.nextInt();
+
+            if (n < 0) {
+                System.out.println("Please enter a non-negative integer.");
+            } else {
+                long fact = 1;
+                int i = 1;
+
+                while (i <= n) {
+                    fact = (fact * i) % 1000000007;
+                    i++;
+                }
+
+                System.out.println(fact);
+            }
+        } else {
+            System.out.println("Please enter a only numbers.");
+        }
+    }
+}
+
+/*10000000007 is chosen because it is close to the maximum value of a 32-bit signed integer (2^31 - 1)
+intermediate results in calculations are less likely to exceed the integer range
+
+Factorials of larger numbers can grow very quickly, and using an int data type might lead to overflow, 
+where the result exceeds the maximum representable value for an int.
+By using a long data type, the program can handle larger results before encountering overflow.*/
+
+9. Digits Sum:
+Given a non-negative integer - N, print the sum of digits of the given number.
+Output Format:
+Print the sum of the digits of the given number.
+
+Constraints: 
+-------------
+input= 1 <= length(N) <= 10^3
+output= result should be within integer range.
+
+Note: Print appropriate error messages if user enters any other characters apart from digits in the input.
+     As given in the test cases below. Remove if there are any extra whitespaces in input.
+
+Test case examples:
+-----------------------
+case=t1
+input=1234
+output=
+10
+
+case=t2
+fail message="hidden"
+input=5678765432456787654345676543456765434567654
+output=
+225
+
+case=t3
+input=  9999999999999999999999999999999999999999999999999999999999999999999999999999999999
+output= 738
+
+case=t4
+input=   Griet1661
+output=
+Only digits are allowed
+
+case=t5
+input=$%^&%$%^&*&%^&
+output=Special characters are not allowed
+
+case=t6
+input=2345678765432345678765432345678765432345678765434567876543234567876543234567876543456787654345676543456765434567654345676543456765434565434
+output=701
+
+case=t7
+input= 1661TrainerID
+output= Only digits are allowed
+
+case=t8
+fail message="hidden"
+input=(()(&*(&^$%&&**
+output=Special characters are not allowed
+
+case=t9
+input=@griet.co.in
+output=Special characters are not allowed
+
+case=t10
+input=Arun@1661
+output=Only digits are allowed.
+
+PROGRAM:
+-----------------------------
+import java.util.Scanner;
+
+public class Main{
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+
+          
+                String input = sc.nextLine().trim();
+
+                int sum = 0;
+                  try {
+                for (int i = 0; i < input.length(); i++) {
+                    char ch = input.charAt(i);
+
+                    if (Character.isDigit(ch)) {
+                        sum += ch - '0';
+                       // sum = sum1 + Integer.parseInt(""+ch);
+                        //sum += Integer.parseInt(String.valueOf(ch));
+                        // sum += Character.getNumericValue(ch);
+                    } else if (Character.isAlphabetic(ch)) {
+                      throw new Exception("Only digits are allowed");
+                    } else {
+                        throw new Exception("Special characters are not allowed");
+                    }
+                }
+                System.out.println(sum);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+ // sum += ch - '0';
+//sum += Integer.parseInt(String.valueOf(ch));
+// sum += Character.getNumericValue(ch);
+
+
+10. Enter two strings and concatenate certain contents of first string with second string.
+
+
+Input Format: Enter 2 Strings each on separate line.
+              Enter the starting index (inclusive) of 1st string from which the content to be concatented.
+              Enter the Ending Index (Exclusive) of first string upto which content need to be concatenated, 
+              Then Enter the starting index point from the second string, from where the content of first string
+              should be concatenated with second string.
+              
+              If both start and end index are same, then just print second string as it is in original format.
+
+
+Note: 
+Print error message: "Oops Array Index exceeded!!" if any one following is true:
+Starting index is negative.
+starting index is greater than ending index.
+Ending index is greater than length of the first string.
+Starting index in second string is negative.
+
+Test case examples:
+-----------------------
+case=t1
+input=Arsenal
+Football
+2
+6
+0
+output=
+senaball
+
+case=t2
+input=Keep Learning
+Java Programming
+5
+10
+5
+output=Java Learnamming
+
+case=t3
+input=GRIET
+TRAINING JAVA
+2
+8
+8
+output=
+Oops Array Index Exceeded!!
+
+case=t4
+input=Griet
+college
+-3
+4
+2
+output=
+Oops Array Index Exceeded!!
+
+case=t5
+input=Java
+Python
+10
+5
+3
+output=
+Oops Array Index Exceeded!!
+
+case=t6
+fail message="hidden"
+input=Java Programming
+training
+5
+30
+4
+output=
+Oops Array Index Exceeded!!
+
+case=t7
+input=12345
+777
+2
+4
+-45
+output=
+Oops Array Index Exceeded!!
+
+case=t8
+input=1661Arun
+Arsenal
+2
+5
+2
+output=
+Ar61Aal
+
+case=t9
+fail message="hidden"
+input=@@@@@@@@@@
+Ack@google.com
+2
+5
+3
+output=
+Ack@@@ogle.com
+
+case=t10
+input=ArunKumar
+1661
+4
+4
+2
+output=
+1661
+
+case=t11
+fail message="check your array index limit if it exceeded or not"
+input=Java Programming Online sessions
+Training
+
+3
+8
+5
+output=
+Oops Array Index Exceeded!!
+
+PROGRAM:
+------------------------------
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+       
+        String str=sc.nextLine();
+        char[] str2= sc.nextLine().toCharArray();
+        int sr=sc.nextInt();
+        int dest=sc.nextInt();
+        int dstbgn=sc.nextInt();
+       // char[] ch  = new char[]{'G','R','I','E','T','C','O','L','L','E','G','E'};
+        try {
+            str.getChars(sr, dest, str2, dstbgn);
+            System.out.println(str2);
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Oops Array Index Exceeded!!");
+        }
+    }
+}
