@@ -1,1 +1,656 @@
+1. Create a Java program that finds and displays the largest power of 3 less than a given non negative-integer.
+
+Test case example:
+---------------------
+case=t1
+input=567
+output=The largest power of 3 less than 567 is: 243
+
+case=t2
+input=789
+output=The largest power of 3 less than 789 is: 729
+
+case=t3
+input=456
+output=The largest power of 3 less than 456 is: 243
+
+case=t4
+input=65
+output=
+The largest power of 3 less than 65 is: 27
+
+PROGRAM:
+--------------------------------
+import java.util.Scanner;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
+        int result = findLargestPowerOf3(num);
+        System.out.println("The largest power of 3 less than " + num + " is: " + result);
+    }
+
+    private static int findLargestPowerOf3(int num) {
+        int power = 0;
+        int base = 3;
+        
+        while (Math.pow(base, power) < num) {
+            power++;
+        }
+        return (int) Math.pow(base, power - 1);
+    }
+}
+
+2. Create a Java program that finds and displays the largest power of 3 less than a given non negative-integer.
+Explaination: powers of 3 are: 3, 9, 27, 81, 243, 729, 2187, 6561, 19683 and so on..
+
+Consider that input number is 65.
+The largest power 3 less than 65 in the given values is 27. hence the Result is 27.
+
+Test case example:
+---------------------
+case=t1
+input=45
+output=
+Reverse of 45: 54
+
+case=t2
+input=-67
+output=
+Reverse of -67: -76
+
+case=t3
+input=90
+output=
+Reverse of 90: 09
+
+case=t4
+input=87
+output=Reverse of 87: 78
+
+PROGRAM:
+--------------------------------
+import java.util.Scanner;
+public class Solution {
+    public static int Met(int x) {
+        int y = x % 10;
+        int z = x / 10;
+        return y * 10 + z;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //System.out.print("Enter a two-digit integer: ");
+        int n = scanner.nextInt();
+
+        int result = Met(n);
+
+         System.out.printf("Reverse of %02d: %02d\n", n, result);
+         
+         /*String formattedOutput = String.format("Reversed of %02d: %02d%n", userInput, result);
+         System.out.print(formattedOutput);
+*/
+        scanner.close();
+    }
+}
+
+
+3. Mr. Jack is playing dice games. In this game, 2 dice are rolled.
+
+The score is calculated by summing the value on the 2 dice. However, when playing in special mode,
+if the number on both dice are equal, then one value is incremented, wrapping around to 1 if its value was 6.
+
+for example: if numbers are 2, 3 and normal mode, output is 5.
+             if numbers are 4, 4 and special mode, output is 9. (since both numbers are equal add +1 to sum)
+             if numbers are 6, 6 and special mode, output is 7. (since both numbers are equal and numbers are 6, sum
+                                                                 wrapped to +1 of any one number, hence 7)
+             if numbers are 6, 6 and normal mode, output is 12. (in normal mode just add the both numbers and print)
+
+Write a method Met to calculate the score. The parameters are 2 integers and 1 boolean.
+Each integer has the value of one of the dice. The boolean is true if the special mode is being played, 
+otherwise it is false. You have to print the score depending on the values.
+
+
+Test Case Example:
+-------------------
+case=t1
+Input= 4 3 false
+Output= 7
+
+case=t2
+Input= 4 4 false
+Output= 8
+
+case=t3
+Input= 4 4 true
+Output= 9
+
+case=t3
+Input= 6 6 true
+Output= 7
+
+case=t4
+input= 4 4 false
+output= 8
+
+case=t5
+input= 4 5 true
+output= 9
+
+case=t6
+input= 1 1 true
+output= 3
+
+case=t7
+fail message="hidden case"
+input= 7 6 true
+output= 13
+
+PROGRAM:
+------------------------------------
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //System.out.print("Enter the value on the first die: ");
+        int dice1 = scanner.nextInt();
+
+        //System.out.print("Enter the value on the second die: ");
+        int dice2 = scanner.nextInt();
+
+        boolean specialMode = scanner.nextBoolean();
+
+        Met(dice1, dice2, specialMode);
+
+        scanner.close();
+    }
+
+  public static void Met(int dice1, int dice2, boolean specialMode) {
+        int sum = dice1 + dice2;
+        if (specialMode && dice1 == dice2) {
+            sum = (dice1 % 6) + 1 + dice2;
+        }
+        System.out.println(sum);
+    }
+}
+
+4. Write a Java program to find the next smallest palindrome number from a given number.
+
+Read input number in long integer format.
+
+
+Test Case Examples:
+-------------------
+case=t1
+input=122
+output=
+Next Smallest Palindrome: 131
+
+case=t2
+input= 456
+output=
+Next Smallest Palindrome: 464
+
+case=t3
+input= 9
+output=
+Next Smallest Palindrome: 11
+
+case=t4
+input=13545
+output=
+Next Smallest Palindrome: 13631
+
+case=t5
+input=56565467
+output=
+Next Smallest Palindrome: 56566565
+
+case=t6
+input=757757
+output=
+Next Smallest Palindrome: 758857
+
+case=t7
+fail message="hidden case"
+input=890
+output=
+Next Smallest Palindrome: 898
+
+case=t8
+input=922337203685477
+output=
+Next Smallest Palindrome: 922337212733229
+
+PROGRAM:
+--------------------------------
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //System.out.print("Enter a number: ");
+        long num = scanner.nextLong();
+
+        long res = PalindromeChecker(num);
+
+        System.out.println("Next Smallest Palindrome: " + res);
+
+        scanner.close();
+    }
+    private static long PalindromeChecker(long num) {
+        while (true) {
+            num++;
+            if (isPalindrome(num)) {
+                return num;
+            }
+        }
+    }
+    private static boolean isPalindrome(long num) {
+        long originalNum = num;
+        long rev = 0;
+
+        while (num > 0) {
+            long digit = num % 10;
+            rev = rev * 10 + digit;
+            num /= 10;
+        }
+
+        return originalNum == rev;
+    }
+}
+
+5. Write a Java method "Met" that takes an integer n and a string word
+as parameters. The method should return the character at the nth position in the string word.
+If the value of n is not within the valid range (1 to the length of the word), the method should 
+return the zero. 
+
+Note: Students need not to write the main method, and reading input part,
+its already given in the server.
+
+Implement onlt the "Met" Method.
+
+
+Test Case Example:
+-------------------
+case=t1
+input= GRIET 3
+output= Result: I
+
+case=t2
+input= Griet Training 3
+output= Invalid input. String Should not Contain Spaces
+
+case=t3
+fail message="hidden case"
+input=3453564654 8
+output= Result: 6
+
+case=t4
+input= Ack1661 4
+output= Result: 1
+
+PROGRAM:
+--------------------------
+class Main {
+    public static char Met(int n, String word) {
+        if (n >= 1 && n <= word.length()) {
+            return word.charAt(n - 1);
+        } else {
+            return '0';
+        }
+    }
+
+}
+
+6. Read a String including integer numbers and combination of Strings with numbers.
+There is no limit on length of the input.
+
+Extract only integers from the input String and Sum.
+
+Note: Use Hasnext and HasnextInt to get the desired results.
+
+Test Case Example:
+-------------------
+case=t1
+input= 1 2 3 4 5
+output=
+Extracted Integer Sum: 15
+
+case=t2
+input= This is Java 123 Learning HasnextInt 777 
+output=
+Extracted Integer Sum: 900
+
+case=t3
+input=Hello123 this is java programming 123
+output=
+Extracted Integer Sum: 123
+
+case=t4
+input=lets learn coding 12 in Training 14
+output=Extracted Integer Sum: 26
+
+case=t5
+fail message="hidden case: check for no integers at all in input"
+input=There is no integer
+output=Extracted Integer Sum: 0
+
+
+PROGRAM:
+----------------------------
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+
+        //System.out.println("Enter a string with integer values: ");
+        String input = scan.nextLine();
+
+        Scanner sc = new Scanner(input);
+        int sum=0;
+        while (sc.hasNext()) {
+            if (sc.hasNextInt()) {
+                 sum = sum + sc.nextInt();
+            } else {
+                sc.next();
+            }
+        }
+        System.out.println("Extracted Integer Sum: "+sum);
+sc.close();
+    }
+}
+
+
+7. Read 2 Strings and check if both strings are same or not and print output message based on following test case:
+
+Note: If strings differ only in one position, then print the index of it.
+      If the String differ in more than one positions, then print the count of number of different characters in the strings.
+
+Use trim() method to remove extra new line character after entering the string 1.
+
+
+Test Case Example:
+-------------------
+case=t1
+input=ARSENAL
+aRsEnAl
+output=
+Strings differ in 4 positions
+
+
+case=t2
+input= griet
+griet
+output=
+Strings differ in 0 positions
+
+case=t3
+input=griet college
+griet training
+output=
+Strings are not of the same length
+
+case=t4
+input=Arsenal
+Arsanal
+output=Strings differ in exactly one position at index 3
+
+case=t5
+fail message="hidden case: Check if Strings differ in all positions"
+input=griet college
+GRIET COLLEGE
+output=
+Strings differ in 12 positions
+
+case=t6
+fail message="hidden case:String differ at one position"
+input=Arun
+Aryn
+output=
+Strings differ in exactly one position at index 2
+
+
+PROGRAM:
+------------------------------------
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+       // System.out.println("Enter the first string: ");
+        String s1 = scanner.nextLine().trim();
+
+       // System.out.println("Enter the second string: ");
+        String s2 = scanner.nextLine();
+
+        if (s1.length()!= s2.length()) {
+            System.out.println("Strings are not of the same length");
+        } else {
+            int count = 0;
+            int flag = 0;
+
+            for (int i = 0; i < s1.length(); i++) {
+                if (s1.charAt(i) != s2.charAt(i)) {
+                    count++;
+                    flag = i;
+                }
+            }
+
+            if (count == 1) {
+                System.out.printf("Strings differ in exactly one position at index %d%n", flag);
+            } else {
+                System.out.printf("Strings differ in %d positions%n", count);
+            }
+        }
+
+        scanner.close();
+    }
+}
+
+
+8. Given a String input, Write a method named as "encryptString" and perform following operations:
+
+For every Alphabet in the String, Insert the next possible alphabet for the given character.
+if the string contains any other character, keep them as it is.
+
+Note: Students need not to enter any input, as its already given in the server.
+
+Implement only "encryptString" method, which accepts a StringBuilder object
+ and returns the StringBuilder value as the answer.
+
+Test Case Example:
+-------------------
+case=t1
+input=ArseNAL
+output=
+BstfOBM
+
+case=t2
+input=   Griet
+output=Hsjfu
+
+case=t3
+input=Ack1661
+output=
+Bdl1661
+
+case=t4
+fail message="hidden case with numbers and special characters"
+input=Kongi567@#123
+output=
+Lpohj567@#123
+
+case=t5
+fail message="hidden case with all caps"
+input=GRIETCOLLEGE
+output=HSJFUDPMMFHF
+
+case=t6
+fail message="hidden case with all small letters"
+input=griet
+output=hsjfu
+
+PROGRAM:
+----------------------------
+import java.util.*;
+public class Main{
+     static StringBuilder encryptString(StringBuilder name) {
+        String alpha = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder newName = new StringBuilder();
+
+        for (char c : name.toString().toCharArray()) {
+            if (Character.isLetter(c)) {
+                int location = alpha.indexOf(Character.toLowerCase(c));
+                char newChar = alpha.charAt((location + 1) % 26);
+                if (Character.isUpperCase(c)) {
+                    newChar = Character.toUpperCase(newChar);
+                }
+                newName.append(newChar);
+            } else {
+                newName.append(c);
+            }
+        }
+
+        return newName;
+    }
+}
+
+
+9. Write a java program to get the days of the first day and last day of the month based on,
+  the input month and year.
+  
+  Input format: enter the month and year as given in the test cases below.
+  Output format: print the days on each separate line
+
+
+Test Case Example:
+-------------------
+case=t1
+input= 12 2023
+output=
+FRIDAY
+SUNDAY
+
+
+case=t2
+input= 01 2023
+output=
+SUNDAY
+TUESDAY
+
+
+case=t3
+fail message="hidden case"
+input=7 1990
+output=
+SUNDAY
+TUESDAY
+
+
+case=t4
+input= 10 2020
+output=
+THURSDAY
+SATURDAY
+
+case=t5
+input=04 2015
+output=
+WEDNESDAY
+THURSDAY
+
+case=t6
+input=
+1 2024
+output=
+MONDAY
+WEDNESDAY
+
+case=t7
+input=1 23
+output=
+SUNDAY
+TUESDAY
+
+
+PROGRAM:
+-----------------------------
+import java.util.*;
+import java.time.*;
+public class Main {
+
+        public static void main(String []args){
+            Scanner sc = new Scanner(System.in);
+            int month = sc.nextInt();
+            int year = sc.nextInt();
+            YearMonth ym = YearMonth.of(year, month);
+
+            String firstDay = ym.atDay(1).getDayOfWeek().name();
+            String lastDay = ym.atEndOfMonth().getDayOfWeek().name();
+
+            System.out.println(firstDay);
+            System.out.println(lastDay);
+        }
+    }
+
+
+10. Write a java program to get day count of the year based on, day, month and year.
+
+Input format: enter the day, month and year on same line.
+Output format: print day count based on given information. (normal year 365 days, leap year 366 days)
+
+Test Case Example:
+-------------------
+case=t1
+input=01 12 2023
+output=
+Day count of the year for 2023: 335
+
+
+case=t2
+input=05 01 2023
+output=
+Day count of the year for 2023: 5
+
+case=t3
+input= 31 12 2024
+output= Day count of the year for 2024: 366
+
+case=t4
+fail message="hidden case"
+input=1 1 1990
+output=
+Day count of the year for 1990: 1
+
+case=t5
+fail message="hidden case"
+input=2 5 2022
+output=
+Day count of the year for 2022: 122
+
+PROGRAM:
+------------------------------------
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class Main {
+
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            int date = sc.nextInt();
+            int month = sc.nextInt();
+            int year = sc.nextInt();
+
+            LocalDate d = LocalDate.of(year,month, date);
+            int dayOfYear = d.getDayOfYear();
+            System.out.println("Day count of the year for " + year + ": " + dayOfYear);
+        }
+    }
 
